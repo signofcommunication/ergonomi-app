@@ -1,21 +1,36 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="text-h4 q-mb-md">{{ currentMateri?.title }}</div>
-    <div class="text-body1 q-mb-lg">{{ currentMateri?.description }}</div>
+    <q-card flat bordered class="q-mb-md">
+      <q-card-section class="q-pa-none">
+        <div v-if="currentMateri?.cover" class="q-pa-lg text-white" :style="coverStyle">
+          <div class="text-h4">{{ currentMateri.title }}</div>
+          <div v-if="currentMateri.subtitle" class="text-body1 q-mt-sm">
+            {{ currentMateri.subtitle }}
+          </div>
+        </div>
+
+        <div v-else class="q-pa-lg">
+          <div class="text-h4">{{ currentMateri?.title }}</div>
+          <div v-if="currentMateri?.subtitle" class="text-body1 q-mt-sm">
+            {{ currentMateri.subtitle }}
+          </div>
+        </div>
+      </q-card-section>
+    </q-card>
 
     <q-card class="q-mb-md">
       <q-card-section>
-        <div class="text-h6">Konten Materi</div>
-        <p class="q-mt-md">
-          {{ currentMateri?.content }}
-        </p>
+        <MarkdownContent v-if="currentMateri" :content="currentMateri.contentMd" />
+        <div v-else class="text-body2 text-grey-7">Materi tidak ditemukan.</div>
       </q-card-section>
     </q-card>
 
     <q-btn
+      unelevated
+      class="full-width"
       :label="isCompleted ? 'Sudah Selesai Dibaca' : 'Tandai sebagai Selesai'"
       :color="isCompleted ? 'positive' : 'primary'"
-      :disable="isCompleted"
+      :disable="isCompleted || !currentMateri"
       @click="completeMateri"
     />
   </q-page>
@@ -25,40 +40,44 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useProgressStore } from 'stores/progress';
+import MarkdownContent from 'components/MarkdownContent.vue';
+import { getMateriById } from 'src/data/materi';
 
 const route = useRoute();
 const progressStore = useProgressStore();
 
 const materiId = computed(() => route.params.id as string);
 
-// Mock data
-const materiData = {
-  '1': {
-    title: 'Pengantar Ergonomi',
-    description: 'Dasar-dasar ergonomi di tempat kerja',
-    content:
-      'Ergonomi adalah ilmu yang mempelajari interaksi antara manusia dan sistem kerja. Tujuan utama ergonomi adalah untuk meningkatkan efisiensi, keselamatan, dan kenyamanan kerja. Dengan menerapkan prinsip ergonomi, kita dapat mengurangi risiko cedera dan meningkatkan produktivitas.',
-  },
-  '2': {
-    title: 'Postur Tubuh yang Benar',
-    description: 'Cara menjaga postur tubuh saat bekerja',
-    content:
-      'Postur tubuh yang benar sangat penting untuk mencegah cedera otot dan tulang. Pastikan punggung lurus, bahu rileks, dan kaki rata di lantai. Hindari membungkuk terlalu lama atau duduk dalam posisi yang tidak ergonomis.',
-  },
-  '3': {
-    title: 'Peregangan dan Relaksasi',
-    description: 'Teknik peregangan untuk mengurangi ketegangan',
-    content:
-      'Peregangan secara teratur dapat membantu mengurangi ketegangan otot dan meningkatkan fleksibilitas. Lakukan peregangan selama 5-10 menit setiap jam kerja. Fokus pada area yang sering tegang seperti leher, bahu, dan punggung.',
-  },
-};
-
-const currentMateri = computed(() => materiData[materiId.value]);
+const currentMateri = computed(() => getMateriById(materiId.value));
 
 const isCompleted = computed(() => progressStore.materiCompleted.includes(materiId.value));
 
+const coverStyle = computed(() => {
+  const cover = currentMateri.value?.cover;
+  if (!cover) return {};
+
+  const overlay = cover.overlay ?? 'dark';
+  const gradient =
+    overlay === 'none'
+      ? ''
+      : overlay === 'light'
+        ? 'linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.35))'
+        : 'linear-gradient(135deg, rgba(0,0,0,.55), rgba(0,0,0,.20))';
+
+  return {
+    borderRadius: '16px',
+    backgroundImage: gradient ? `${gradient}, url(${cover.src})` : `url(${cover.src})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '180px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  } as const;
+});
+
 const completeMateri = () => {
-  if (!isCompleted.value) {
+  if (!isCompleted.value && currentMateri.value) {
     progressStore.completeMateri(materiId.value);
   }
 };

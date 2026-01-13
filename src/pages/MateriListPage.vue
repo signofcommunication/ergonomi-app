@@ -15,7 +15,7 @@
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ materi.title }}</q-item-label>
-          <q-item-label caption>{{ materi.description }}</q-item-label>
+          <q-item-label caption>{{ materi.subtitle }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-chip
@@ -32,27 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { useProgressStore } from 'stores/progress';
-
-// Mock data for now
-const materiList = [
-  { id: '1', title: 'Pengantar Ergonomi', description: 'Dasar-dasar ergonomi di tempat kerja' },
-  {
-    id: '2',
-    title: 'Postur Tubuh yang Benar',
-    description: 'Cara menjaga postur tubuh saat bekerja',
-  },
-  {
-    id: '3',
-    title: 'Peregangan dan Relaksasi',
-    description: 'Teknik peregangan untuk mengurangi ketegangan',
-  },
-];
+import { materiList as materiData } from 'src/data/materi';
 
 const progressStore = useProgressStore();
 
-const isCompleted = (id: string) => {
-  return progressStore.materiCompleted.includes(id);
-};
+const materiList = materiData;
+
+const isCompleted = (id: string) => progressStore.materiCompleted.includes(id);
 </script>
