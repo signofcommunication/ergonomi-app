@@ -2,40 +2,64 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title> Aplikasi Ergonomi </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div v-if="userStore.isLoggedIn" class="text-body2">
+          Selamat datang, {{ userStore.name }}
+        </div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
+        <q-item-label header> Navigasi </q-item-label>
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item clickable @click="navigateTo('/dashboard')" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="dashboard" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Dashboard</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable @click="navigateTo('/materi')" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="book" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Materi</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable @click="navigateTo('/assessment')" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="quiz" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Penilaian</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable @click="navigateTo('/latihan')" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="fitness_center" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Latihan</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable @click="navigateTo('/progress')" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="bar_chart" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Progress</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -47,56 +71,19 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+import { useRouter } from 'vue-router';
+import { useUserStore } from 'stores/user';
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+const router = useRouter();
+const userStore = useUserStore();
 
 const leftDrawerOpen = ref(false);
 
-function toggleLeftDrawer () {
+function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+function navigateTo(path: string) {
+  void router.push(path);
 }
 </script>
