@@ -15,7 +15,7 @@
           <div style="width: 100%; max-width: 360px">
             <q-input
               v-model="username"
-              label="Username"
+              label="Email"
               outlined
               dense
               clearable
@@ -32,17 +32,22 @@
               outlined
               dense
               clearable
-              class="q-mb-lg"
+              class="q-mb-sm"
               autocomplete="current-password"
               @keyup.enter="login"
             />
+
+            <div v-if="errorMessage" class="text-negative text-caption q-mb-md">
+              {{ errorMessage }}
+            </div>
 
             <q-btn
               label="LOGIN"
               color="primary"
               unelevated
               class="full-width q-py-sm"
-              :disable="!username.trim() || !password.trim()"
+              :loading="isLoading"
+              :disable="isLoading || !username.trim() || !password.trim()"
               @click="login"
             />
           </div>
@@ -54,25 +59,71 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from 'stores/user';
+import { login as firebaseLogin } from 'src/services/firebase/auth';
+import { Notify } from 'quasar';
 
 const username = ref('');
 const password = ref('');
 const passwordRef = ref();
+const route = useRoute();
 const router = useRouter();
 const userStore = useUserStore();
 
+const isLoading = ref(false);
+const errorMessage = ref('');
+
 const focusPassword = () => {
   if (username.value.trim()) {
-    passwordRef.value.focus();
+    passwordRef.value?.focus?.();
   }
 };
 
-const login = () => {
-  if (username.value.trim() && password.value.trim()) {
-    userStore.login(username.value.trim(), password.value.trim());
-    void router.push('/dashboard');
+const login = async () => {
+  if (!username.value.trim() || !password.value.trim()) return;
+
+  isLoading.value = true;
+  errorMessage.value = '';
+
+  try {
+    // Email/password auth: treat current "username" field as email.
+    const email = username.value.trim();
+
+    const cred = await firebaseLogin({
+      email,
+      password: password.value.trim(),
+    });
+
+    // Store local session state (no guards yet)
+    userStore.login(email, '***');
+
+    // Optionally you can store uid later in the store
+    void cred;
+
+    Notify.create({
+      type: 'positive',
+      message: 'Login berhasil.',
+      position: 'bottom',
+      timeout: 1500,
+    });
+
+    const redirectPath = (route.query.redirect as string | undefined) ?? '/dashboard';
+    void router.push(redirectPath);
+    return;
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Login gagal. Silakan coba lagi.';
+    errorMessage.value = message;
+
+    Notify.create({
+      type: 'negative',
+      message: 'Login gagal. Periksa email dan password Anda.',
+      caption: message,
+      position: 'top',
+      timeout: 2500,
+    });
+  } finally {
+    isLoading.value = false;
   }
 };
 </script>

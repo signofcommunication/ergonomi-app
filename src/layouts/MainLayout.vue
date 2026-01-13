@@ -60,6 +60,17 @@
             <q-item-label>Progress</q-item-label>
           </q-item-section>
         </q-item>
+
+        <q-separator class="q-my-sm" />
+
+        <q-item v-if="isAuthenticated" clickable @click="handleLogout" v-close-popup>
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Logout</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -70,12 +81,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { Notify } from 'quasar';
 import { useUserStore } from 'stores/user';
+import { logout as firebaseLogout } from 'src/services/firebase/auth';
+import { auth } from 'src/boot/firebase';
 
 const router = useRouter();
 const userStore = useUserStore();
+
+const isAuthenticated = computed(() => userStore.isLoggedIn || !!auth.currentUser);
 
 const leftDrawerOpen = ref(false);
 
@@ -85,5 +101,16 @@ function toggleLeftDrawer() {
 
 function navigateTo(path: string) {
   void router.push(path);
+}
+
+async function handleLogout() {
+  try {
+    await firebaseLogout();
+  } finally {
+    // Clear local state regardless
+    userStore.$reset();
+    Notify.create({ type: 'info', message: 'Anda telah logout.', position: 'top', timeout: 1500 });
+    void router.push('/login');
+  }
 }
 </script>
