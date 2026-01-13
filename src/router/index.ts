@@ -10,6 +10,7 @@ import { auth } from 'src/boot/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useUserStore } from 'stores/user';
 import { createPinia } from 'pinia';
+import { getUserProfile } from 'src/services/firebase/users';
 
 function getAuthReady(): Promise<void> {
   return new Promise((resolve) => {
@@ -42,22 +43,45 @@ export default defineRouter(function (/* { store, ssrContext } */) {
 
   Router.beforeEach(async (to) => {
     const requiresAuth = to.matched.some((r) => r.meta?.requiresAuth === true);
-    if (!requiresAuth) return true;
+    const requiresAdmin = to.matched.some((r) => r.meta?.requiresAdmin === true);
 
-    // Wait for Firebase auth to hydrate (important on refresh / mobile)
+    if (!requiresAuth && !requiresAdmin) return true;
+
     await getAuthReady();
 
-    const isFirebaseLoggedIn = !!auth.currentUser;
-    if (isFirebaseLoggedIn) return true;
+    const currentUser = auth.currentUser;
 
-    // Fallback to local state (useful during development)
-    const userStore = useUserStore(pinia);
-    if (userStore.isLoggedIn) return true;
+    // Not logged in
+    if (!currentUser) {
+      // Fallback to local state (useful during development)
+      const userStore = useUserStore(pinia);
+      if (!userStore.isLoggedIn) {
+        return { path: '/login', query: { redirect: to.fullPath } };
+      }
 
-    return {
-      path: '/login',
-      query: { redirect: to.fullPath },
-    };
+      // If local state says logged in but Firebase doesn't, force re-login.
+      return { path: '/login', query: { redirect: to.fullPath } };
+    }
+
+    // Read user profile from Firestore (no auto-write)
+    const profile = await getUserProfile(currentUser.uid);
+
+    // If user doc missing, treat as blocked until admin provisions it.
+    if (!profile) {
+      return { path: '/login', query: { reason: 'no-profile' } };
+    }
+
+    // Inactive users cannot access protected routes
+    if (!profile.isActive) {
+      return { path: '/login', query: { reason: 'inactive' } };
+    }
+
+    // Admin-only gating when meta.requiresAdmin is present
+    if (requiresAdmin && profile.role !== 'admin') {
+      return { path: '/dashboard' };
+    }
+
+    return true;
   });
 
   return Router;

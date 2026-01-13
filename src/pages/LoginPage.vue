@@ -50,6 +50,14 @@
               :disable="isLoading || !username.trim() || !password.trim()"
               @click="login"
             />
+
+            <q-btn
+              flat
+              class="full-width q-mt-sm"
+              label="Belum punya akun? Daftar"
+              color="primary"
+              @click="goToRegister"
+            />
           </div>
         </div>
       </q-page>
@@ -125,5 +133,9 @@ const login = async () => {
   } finally {
     isLoading.value = false;
   }
+};
+
+const goToRegister = () => {
+  void router.push('/register');
 };
 </script>
