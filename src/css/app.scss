@@ -1,1 +1,96 @@
 // app global css in SCSS form
+
+// --- Material-ish baseline (Google Material 3 inspired) ---
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family:
+    Roboto,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  background: #fafafa;
+}
+
+/* Page paddings (mobile-first) */
+.q-page {
+  padding-bottom: 24px;
+}
+
+/* Surfaces (cards, header, drawer) */
+.q-card,
+.q-header,
+.q-drawer {
+  border-radius: 16px;
+}
+
+.q-header {
+  border-radius: 0; /* header should remain flush */
+}
+
+.q-page-container {
+  background: #fafafa;
+}
+
+/* Subtle elevation like Material */
+.q-card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.q-btn {
+  border-radius: 12px;
+  letter-spacing: 0.02em;
+  text-transform: none; /* Material 3 style */
+}
+
+.q-btn--unelevated {
+  box-shadow: none;
+}
+
+/* Inputs (outlined) */
+.q-field--outlined .q-field__control {
+  border-radius: 12px;
+}
+
+.q-field--outlined .q-field__native,
+.q-field--outlined .q-field__prefix,
+.q-field--outlined .q-field__suffix {
+  font-size: 16px; /* comfortable for mobile */
+}
+
+/* Labels should feel like Material */
+.q-field__label {
+  font-weight: 500;
+}
+
+/* Lists & items */
+.q-list {
+  border-radius: 16px;
+}
+
+.q-item {
+  border-radius: 12px;
+}
+
+.q-item.q-item--active,
+.q-item--highlighted {
+  background: rgba(25, 118, 210, 0.08);
+}
+
+/* Toolbar typography */
+.q-toolbar__title {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Chips */
+.q-chip {
+  border-radius: 9999px;
+}

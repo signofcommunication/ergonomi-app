@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
-      <q-page class="q-pa-lg">
-        <div class="column items-center">
+      <q-page class="q-pa-lg column items-center justify-center">
+        <div class="column">
           <!-- Header circle / logo area -->
           <div
             class="bg-primary flex flex-center q-mb-xl"
