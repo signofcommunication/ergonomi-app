@@ -1,21 +1,52 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
-      <q-page class="flex flex-center">
-        <q-card class="q-pa-md" style="min-width: 300px">
-          <q-card-section>
-            <div class="text-h6">Masuk ke Aplikasi Ergonomi</div>
-            <div class="text-subtitle2">Masukkan nama Anda untuk melanjutkan</div>
-          </q-card-section>
+      <q-page class="q-pa-lg">
+        <div class="column items-center">
+          <!-- Header circle / logo area -->
+          <div
+            class="bg-primary flex flex-center q-mb-xl"
+            style="width: 220px; height: 220px; border-radius: 9999px"
+          >
+            <q-avatar size="56px" color="white" text-color="primary" icon="person" />
+          </div>
 
-          <q-card-section>
-            <q-input v-model="name" label="Nama Lengkap" outlined @keyup.enter="login" />
-          </q-card-section>
+          <!-- Form -->
+          <div style="width: 100%; max-width: 360px">
+            <q-input
+              v-model="username"
+              label="Username"
+              outlined
+              dense
+              clearable
+              class="q-mb-md"
+              autocomplete="username"
+              @keyup.enter="focusPassword"
+            />
 
-          <q-card-actions align="right">
-            <q-btn flat label="Masuk" color="primary" :disable="!name.trim()" @click="login" />
-          </q-card-actions>
-        </q-card>
+            <q-input
+              ref="passwordRef"
+              v-model="password"
+              label="Password"
+              type="password"
+              outlined
+              dense
+              clearable
+              class="q-mb-lg"
+              autocomplete="current-password"
+              @keyup.enter="login"
+            />
+
+            <q-btn
+              label="LOGIN"
+              color="primary"
+              unelevated
+              class="full-width q-py-sm"
+              :disable="!username.trim() || !password.trim()"
+              @click="login"
+            />
+          </div>
+        </div>
       </q-page>
     </q-page-container>
   </q-layout>
@@ -26,14 +57,22 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from 'stores/user';
 
-const name = ref('');
+const username = ref('');
+const password = ref('');
+const passwordRef = ref();
 const router = useRouter();
 const userStore = useUserStore();
 
+const focusPassword = () => {
+  if (username.value.trim()) {
+    passwordRef.value.focus();
+  }
+};
+
 const login = () => {
-  if (name.value.trim()) {
-    userStore.login(name.value.trim());
-    router.push('/dashboard');
+  if (username.value.trim() && password.value.trim()) {
+    userStore.login(username.value.trim(), password.value.trim());
+    void router.push('/dashboard');
   }
 };
 </script>

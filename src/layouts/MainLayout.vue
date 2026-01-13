@@ -7,7 +7,7 @@
         <q-toolbar-title> Aplikasi Ergonomi </q-toolbar-title>
 
         <div v-if="userStore.isLoggedIn" class="text-body2">
-          Selamat datang, {{ userStore.name }}
+          Selamat datang, {{ userStore.username }}
         </div>
       </q-toolbar>
     </q-header>
