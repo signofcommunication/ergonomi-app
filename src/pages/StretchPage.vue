@@ -6,9 +6,13 @@
     <q-card class="q-mb-md">
       <q-card-section>
         <div class="text-h6">Peregangan Leher</div>
-        <p class="q-mt-sm">
-          Miringkan kepala ke kiri, tahan 10 detik, lalu ke kanan. Ulangi 3 kali.
-        </p>
+        <ol>
+          <li>Miringkan kepala ke kiri, tahan selama 10 detik.</li>
+          <li>Kembali ke posisi netral.</li>
+          <li>Miringkan kepala ke kanan, tahan selama 10 detik.</li>
+          <li>Kembali ke posisi netral.</li>
+          <li>Ulangi rangkaian gerakan tersebut sebanyak 3 kali.</li>
+        </ol>
       </q-card-section>
     </q-card>
 
@@ -28,12 +32,8 @@
       </q-card-section>
     </q-card>
 
-    <q-btn
-      :label="isCompleted ? 'Sudah Selesai' : 'Tandai sebagai Selesai'"
-      :color="isCompleted ? 'positive' : 'primary'"
-      :disable="isCompleted"
-      @click="completeStretch"
-    />
+    <q-btn :label="isCompleted ? 'Sudah Selesai' : 'Tandai sebagai Selesai'"
+      :color="isCompleted ? 'positive' : 'primary'" :disable="isCompleted" @click="completeStretch" />
   </q-page>
 </template>
 
