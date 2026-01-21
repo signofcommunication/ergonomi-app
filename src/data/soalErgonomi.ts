@@ -1,0 +1,481 @@
+export type SoalErgonomi = {
+  id: string;
+  level: 1 | 2 | 3;
+  question: string;
+  options: string[];
+  correctIndex: number;
+};
+
+export const soalErgonomi: SoalErgonomi[] = [
+  // =====================
+  // Level 1 – Part 1
+  // =====================
+  {
+    id: 'L1-1',
+    level: 1,
+    question: 'Ergonomi dapat didefinisikan sebagai ilmu yang mempelajari tentang …',
+    options: [
+      'Cara meningkatkan prestasi akademik mahasiswa',
+      'Hubungan antara manusia, pekerjaan, dan lingkungan agar lebih efisien',
+      'Kesehatan mental mahasiswa selama perkuliahan',
+      'Desain bangunan kampus yang modern',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-2',
+    level: 1,
+    question: 'Prinsip utama ergonomi adalah …',
+    options: [
+      'Menyesuaikan manusia dengan pekerjaan',
+      'Menyesuaikan pekerjaan dengan kemampuan dan keterbatasan manusia',
+      'Memaksimalkan beban kerja agar produktif',
+      'Mengurangi waktu istirahat',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-3',
+    level: 1,
+    question: 'Ergonomi yang berkaitan dengan postur tubuh dan desain meja kursi termasuk dalam …',
+    options: ['Ergonomi kognitif', 'Ergonomi organisasi', 'Ergonomi fisik', 'Ergonomi lingkungan'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L1-4',
+    level: 1,
+    question: 'Konsentrasi, stres, dan beban mental saat belajar merupakan bagian dari …',
+    options: ['Ergonomi fisik', 'Ergonomi kognitif', 'Ergonomi organisasi', 'Ergonomi lingkungan'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-5',
+    level: 1,
+    question: 'Pengaturan waktu belajar, sistem perkuliahan, dan kerja kelompok termasuk dalam …',
+    options: ['Ergonomi fisik', 'Ergonomi kognitif', 'Ergonomi organisasi', 'Ergonomi lingkungan'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L1-6',
+    level: 1,
+    question: 'Salah satu prinsip dasar ergonomi yang benar adalah …',
+    options: [
+      'Mempertahankan posisi duduk statis selama mungkin',
+      'Mengurangi gerakan berulang dan posisi statis terlalu lama',
+      'Mengabaikan waktu istirahat',
+      'Mengutamakan kecepatan daripada kenyamanan',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-7',
+    level: 1,
+    question: 'Posisi layar laptop yang ergonomis bagi mahasiswa adalah …',
+    options: [
+      'Di bawah meja',
+      'Sejajar dengan tinggi mata',
+      'Lebih tinggi dari kepala',
+      'Di pangkuan',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-8',
+    level: 1,
+    question: 'Manfaat utama penerapan ergonomi di kampus adalah …',
+    options: [
+      'Meningkatkan nilai akademik secara langsung',
+      'Mengurangi biaya operasional kampus',
+      'Meningkatkan kesehatan, kenyamanan, dan konsentrasi belajar',
+      'Mempercepat masa studi',
+    ],
+    correctIndex: 2,
+  },
+  {
+    id: 'L1-9',
+    level: 1,
+    question: 'Peregangan leher bertujuan utama untuk …',
+    options: [
+      'Memperkuat otot bahu',
+      'Mengurangi ketegangan dan kekakuan leher',
+      'Melatih keseimbangan tubuh',
+      'Meningkatkan daya ingat',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-10',
+    level: 1,
+    question: 'Peregangan bahu bermanfaat untuk …',
+    options: [
+      'Mencegah kelelahan mata',
+      'Mengurangi pegal dan memperbaiki postur tubuh',
+      'Meningkatkan kekuatan tangan',
+      'Mengurangi nyeri lutut',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-11',
+    level: 1,
+    question: 'Peregangan punggung secara rutin dapat membantu …',
+    options: [
+      'Meningkatkan kecepatan menulis',
+      'Mengurangi nyeri punggung dan mencegah gangguan muskuloskeletal',
+      'Menurunkan berat badan',
+      'Mengurangi stres visual',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-12',
+    level: 1,
+    question: 'Waktu yang dianjurkan untuk melakukan peregangan saat belajar adalah setiap …',
+    options: ['5–10 menit', '10–15 menit', '20–30 menit', '1–2 jam'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L1-13',
+    level: 1,
+    question: 'Keluhan muskuloskeletal (MSDs) yang sering dialami mahasiswa adalah …',
+    options: [
+      'Demam dan batuk',
+      'Nyeri leher, bahu, dan punggung',
+      'Gangguan pendengaran',
+      'Alergi kulit',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L1-14',
+    level: 1,
+    question: 'Aturan 20–20–20 bertujuan untuk mencegah …',
+    options: ['Nyeri punggung', 'Kelelahan otot kaki', 'Kelelahan mata', 'Gangguan postur'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L1-15',
+    level: 1,
+    question: 'Beban tas kuliah yang dianjurkan secara ergonomis adalah maksimal …',
+    options: ['5% berat badan', '10–15% berat badan', '20–25% berat badan', 'Tidak ada batasan'],
+    correctIndex: 1,
+  },
+
+  // =====================
+  // Level 2 – Part 2
+  // =====================
+  {
+    id: 'L2-1',
+    level: 2,
+    question: 'Tujuan utama penerapan ergonomi di lingkungan kampus adalah …',
+    options: [
+      'Meningkatkan jumlah mahasiswa',
+      'Menciptakan lingkungan belajar yang aman, sehat, dan nyaman',
+      'Mengurangi jam perkuliahan',
+      'Menyeragamkan fasilitas kampus',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-2',
+    level: 2,
+    question: 'Ergonomi yang fokus pada beban mental, persepsi, dan stres belajar disebut …',
+    options: ['Ergonomi fisik', 'Ergonomi organisasi', 'Ergonomi kognitif', 'Ergonomi lingkungan'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L2-3',
+    level: 2,
+    question: 'Contoh penerapan ergonomi fisik di ruang kelas adalah …',
+    options: [
+      'Pengaturan jadwal kuliah',
+      'Desain kursi dan meja sesuai ukuran tubuh mahasiswa',
+      'Pembagian tugas kelompok',
+      'Sistem penilaian dosen',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-4',
+    level: 2,
+    question: 'Postur duduk ergonomis yang benar saat kuliah adalah …',
+    options: [
+      'Punggung membungkuk ke depan',
+      'Kaki menggantung tanpa sandaran',
+      'Punggung tegak dan bahu rileks',
+      'Kepala terus menunduk',
+    ],
+    correctIndex: 2,
+  },
+  {
+    id: 'L2-5',
+    level: 2,
+    question: 'Duduk statis terlalu lama dapat menyebabkan …',
+    options: [
+      'Peningkatan konsentrasi',
+      'Keluhan muskuloskeletal',
+      'Keseimbangan tubuh meningkat',
+      'Postur tubuh membaik',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-6',
+    level: 2,
+    question: 'Keluhan yang sering muncul akibat penggunaan laptop yang tidak ergonomis adalah …',
+    options: ['Nyeri leher dan bahu', 'Gangguan pendengaran', 'Nyeri perut', 'Alergi kulit'],
+    correctIndex: 0,
+  },
+  {
+    id: 'L2-7',
+    level: 2,
+    question: 'Peregangan bahu dianjurkan untuk mencegah …',
+    options: ['Kelelahan mata', 'Ketegangan otot bahu', 'Nyeri lutut', 'Kesemutan kaki'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-8',
+    level: 2,
+    question: 'Manfaat utama peregangan punggung bagi mahasiswa adalah …',
+    options: [
+      'Meningkatkan kecepatan membaca',
+      'Mengurangi risiko nyeri punggung',
+      'Menambah kekuatan tangan',
+      'Mengurangi kelelahan mata',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-9',
+    level: 2,
+    question: 'Aturan 20–20–20 direkomendasikan untuk mencegah …',
+    options: [
+      'Nyeri punggung bawah',
+      'Kelelahan mental',
+      'Kelelahan mata akibat layar',
+      'Cedera bahu',
+    ],
+    correctIndex: 2,
+  },
+  {
+    id: 'L2-10',
+    level: 2,
+    question: 'Jarak pandang mata ke layar yang dianjurkan secara ergonomis adalah …',
+    options: ['20–30 cm', '30–40 cm', '50–70 cm', 'Lebih dari 1 meter'],
+    correctIndex: 2,
+  },
+  {
+    id: 'L2-11',
+    level: 2,
+    question: 'Forward head posture pada mahasiswa dapat terjadi akibat …',
+    options: [
+      'Berdiri terlalu lama',
+      'Sering menunduk saat menggunakan smartphone',
+      'Kurang aktivitas fisik',
+      'Mengangkat beban berat',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-12',
+    level: 2,
+    question: 'Beban tas ransel yang disarankan untuk mahasiswa adalah …',
+    options: ['≤ 5% berat badan', '≤ 10–15% berat badan', '≤ 20% berat badan', 'Tidak dibatasi'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-13',
+    level: 2,
+    question: 'Ergonomi organisasi di kampus berhubungan dengan …',
+    options: [
+      'Pencahayaan ruang kelas',
+      'Desain kursi dan meja',
+      'Pengaturan beban tugas dan jadwal kuliah',
+      'Posisi layar laptop',
+    ],
+    correctIndex: 2,
+  },
+  {
+    id: 'L2-14',
+    level: 2,
+    question: 'Microbreak ergonomis sebaiknya dilakukan …',
+    options: ['Setiap 2–3 jam', 'Setiap 30–60 menit', 'Sekali sehari', 'Hanya saat lelah'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L2-15',
+    level: 2,
+    question: 'Salah satu dampak psikososial dari ergonomi kampus yang buruk adalah …',
+    options: [
+      'Peningkatan motivasi belajar',
+      'Mudah stres dan menurunnya motivasi',
+      'Konsentrasi meningkat',
+      'Prestasi akademik otomatis naik',
+    ],
+    correctIndex: 1,
+  },
+
+  // =====================
+  // Level 3 – Part 3
+  // =====================
+  {
+    id: 'L3-1',
+    level: 3,
+    question: 'Ergonomi dalam konteks kampus berperan penting untuk …',
+    options: [
+      'Menambah beban akademik mahasiswa',
+      'Menciptakan aktivitas belajar yang lebih aman dan nyaman',
+      'Mengurangi interaksi dosen dan mahasiswa',
+      'Meningkatkan persaingan antar mahasiswa',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-2',
+    level: 3,
+    question: 'Prinsip ergonomi menekankan bahwa aktivitas belajar seharusnya …',
+    options: [
+      'Menyesuaikan mahasiswa dengan fasilitas kampus',
+      'Menyesuaikan fasilitas dan aktivitas dengan kemampuan manusia',
+      'Menuntut mahasiswa beradaptasi tanpa batas',
+      'Mengutamakan target akademik dibanding kesehatan',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-3',
+    level: 3,
+    question: 'Ergonomi fisik di kampus terutama berkaitan dengan …',
+    options: [
+      'Beban tugas dan jadwal kuliah',
+      'Postur tubuh dan desain fasilitas belajar',
+      'Motivasi dan stres belajar',
+      'Sistem evaluasi akademik',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-4',
+    level: 3,
+    question: 'Contoh masalah ergonomi yang sering dialami mahasiswa adalah …',
+    options: [
+      'Sulit memahami materi kuliah',
+      'Nyeri leher akibat posisi duduk yang salah',
+      'Kurang minat mengikuti organisasi',
+      'Nilai ujian rendah',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-5',
+    level: 3,
+    question: 'Salah satu manfaat utama penerapan postur duduk ergonomis adalah …',
+    options: [
+      'Menghemat waktu belajar',
+      'Mengurangi risiko nyeri otot dan sendi',
+      'Menambah beban kerja',
+      'Mempercepat penyelesaian tugas',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-6',
+    level: 3,
+    question: 'Penggunaan laptop dalam waktu lama tanpa pengaturan ergonomis dapat menyebabkan …',
+    options: [
+      'Kelelahan visual dan nyeri leher',
+      'Gangguan pencernaan',
+      'Cedera kaki',
+      'Gangguan pendengaran',
+    ],
+    correctIndex: 0,
+  },
+  {
+    id: 'L3-7',
+    level: 3,
+    question: 'Peregangan leher dianjurkan bagi mahasiswa karena dapat …',
+    options: [
+      'Meningkatkan konsentrasi belajar',
+      'Mengurangi ketegangan otot leher',
+      'Memperkuat otot tangan',
+      'Mengurangi kelelahan mata',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-8',
+    level: 3,
+    question: 'Peregangan bahu secara rutin bermanfaat untuk …',
+    options: [
+      'Mengurangi pegal akibat postur duduk tidak ergonomis',
+      'Meningkatkan daya ingat',
+      'Mengurangi kelelahan kaki',
+      'Menurunkan stres visual',
+    ],
+    correctIndex: 0,
+  },
+  {
+    id: 'L3-9',
+    level: 3,
+    question: 'Peregangan punggung diperlukan terutama setelah …',
+    options: ['Berdiri singkat', 'Duduk dalam waktu lama', 'Berjalan santai', 'Berolahraga ringan'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-10',
+    level: 3,
+    question: 'Waktu ideal melakukan peregangan saat belajar adalah …',
+    options: ['Setiap 10 menit', 'Setiap 20–30 menit', 'Setiap 2 jam', 'Hanya saat merasa nyeri'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-11',
+    level: 3,
+    question: 'Kelelahan fisik dan mental pada mahasiswa dapat dipicu oleh …',
+    options: [
+      'Istirahat cukup',
+      'Postur kerja yang salah dalam waktu lama',
+      'Aktivitas fisik ringan',
+      'Pengaturan waktu yang baik',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-12',
+    level: 3,
+    question: 'Keluhan mata seperti perih dan pandangan kabur sementara dikenal sebagai …',
+    options: ['Gangguan muskuloskeletal', 'Visual fatigue', 'Postural disorder', 'Beban mental'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-13',
+    level: 3,
+    question: 'Kebiasaan menunduk saat menggunakan smartphone berisiko menyebabkan …',
+    options: ['Nyeri lutut', 'Forward head posture', 'Kram kaki', 'Cedera pergelangan tangan'],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-14',
+    level: 3,
+    question: 'Salah satu cara pencegahan keluhan ergonomi di kampus adalah …',
+    options: [
+      'Duduk statis selama mungkin',
+      'Melakukan microbreak secara berkala',
+      'Mengurangi aktivitas belajar',
+      'Mengabaikan rasa tidak nyaman',
+    ],
+    correctIndex: 1,
+  },
+  {
+    id: 'L3-15',
+    level: 3,
+    question: 'Ergonomi kampus yang baik akan berdampak positif terhadap …',
+    options: [
+      'Kesehatan dan produktivitas mahasiswa',
+      'Beban tugas yang semakin berat',
+      'Tingkat stres yang meningkat',
+      'Penurunan kualitas belajar',
+    ],
+    correctIndex: 0,
+  },
+];

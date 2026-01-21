@@ -5,19 +5,16 @@
       Jawab pertanyaan berikut untuk menilai pemahaman Anda tentang ergonomi.
     </div>
 
-    <q-card class="q-mb-md">
+    <q-card class="q-mb-md" v-for="(soal, index) in soalLevel1" :key="soal.id">
       <q-card-section>
-        <div class="text-h6">Pertanyaan 1</div>
-        <p class="q-mt-sm">Apa tujuan utama dari ergonomi?</p>
-        <q-option-group v-model="answers.q1" :options="options.q1" type="radio" />
-      </q-card-section>
-    </q-card>
-
-    <q-card class="q-mb-md">
-      <q-card-section>
-        <div class="text-h6">Pertanyaan 2</div>
-        <p class="q-mt-sm">Manakah yang bukan merupakan manfaat postur tubuh yang benar?</p>
-        <q-option-group v-model="answers.q2" :options="options.q2" type="radio" />
+        <div class="text-h6">Pertanyaan {{ index + 1 }}</div>
+        <p class="q-mt-sm">{{ soal.question }}</p>
+        <q-option-group
+          :model-value="jawaban[soal.id]"
+          @update:model-value="(val) => (jawaban[soal.id] = val)"
+          :options="soal.options.map((opt, i) => ({ label: opt, value: i }))"
+          type="radio"
+        />
       </q-card-section>
     </q-card>
 
@@ -33,31 +30,48 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { soalErgonomi } from 'src/data/soalErgonomi';
+import { useResultStore } from 'src/stores/result';
 
 const router = useRouter();
+const resultStore = useResultStore();
 
-const answers = ref({
-  q1: '',
-  q2: '',
-});
+// Ambil dulu soal level 1 (Part 1)
+const soalLevel1 = soalErgonomi.filter((s) => s.level === 1).slice(0, 15);
 
-const options = {
-  q1: [
-    { label: 'Meningkatkan efisiensi kerja', value: 'a' },
-    { label: 'Mengurangi risiko cedera', value: 'b' },
-    { label: 'Keduanya benar', value: 'c' },
-  ],
-  q2: [
-    { label: 'Mengurangi ketegangan otot', value: 'a' },
-    { label: 'Meningkatkan produktivitas', value: 'b' },
-    { label: 'Menyebabkan kelelahan', value: 'c' },
-  ],
-};
+const jawaban = ref<Record<string, number | null>>(
+  soalLevel1.reduce(
+    (acc, s) => {
+      acc[s.id] = null;
+      return acc;
+    },
+    {} as Record<string, number | null>,
+  ),
+);
 
-const isComplete = computed(() => answers.value.q1 && answers.value.q2);
+const isComplete = computed(() => Object.values(jawaban.value).every((v) => v !== null));
 
 const submitAssessment = () => {
-  // For now, just navigate to result
-  router.push('/result');
+  const detail = soalLevel1.map((s) => ({
+    id: s.id,
+    question: s.question,
+    correctIndex: s.correctIndex,
+    userIndex: jawaban.value[s.id],
+  }));
+
+  const benar = detail.filter((d) => d.userIndex === d.correctIndex).length;
+
+  resultStore.setResult({
+    score: benar,
+    total: soalLevel1.length,
+    detail,
+  });
+
+  sessionStorage.setItem(
+    'assessmentResult',
+    JSON.stringify({ score: benar, total: soalLevel1.length, detail }),
+  );
+
+  void router.push('/result');
 };
 </script>
