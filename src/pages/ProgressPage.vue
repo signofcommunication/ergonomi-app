@@ -37,12 +37,20 @@
       </q-card-section>
     </q-card>
 
-    <!-- Materi read -->
+    <!-- Materi read (sinkron dengan data materi) -->
     <div class="progress__sectionLabel q-mb-sm">MATERI YANG TELAH DIBACA</div>
     <q-card class="progress__listCard q-mb-lg" flat bordered>
       <q-list separator>
+        <q-item v-if="completedMateriList.length === 0">
+          <q-item-section>
+            <q-item-label class="progress__itemCaption"
+              >Belum ada materi yang diselesaikan.</q-item-label
+            >
+          </q-item-section>
+        </q-item>
+
         <q-item
-          v-for="materi in materiList"
+          v-for="materi in completedMateriList"
           :key="materi.id"
           clickable
           @click="$router.push(`/materi/${materi.id}`)"
@@ -55,27 +63,21 @@
 
           <q-item-section>
             <q-item-label class="progress__itemTitle">{{ materi.title }}</q-item-label>
+            <q-item-label caption class="progress__itemCaption">{{ materi.subtitle }}</q-item-label>
           </q-item-section>
 
           <q-item-section side>
-            <div
-              class="progress__badge"
-              :class="
-                isMateriCompleted(materi.id) ? 'progress__badge--done' : 'progress__badge--todo'
-              "
-            >
-              {{ isMateriCompleted(materi.id) ? 'Selesai' : 'Belum' }}
-            </div>
+            <div class="progress__badge progress__badge--done">Selesai</div>
           </q-item-section>
         </q-item>
       </q-list>
     </q-card>
 
-    <!-- Exercises -->
+    <!-- Exercises (sinkron dengan store) -->
     <div class="progress__sectionLabel q-mb-sm">LATIHAN YANG DISELESAIKAN</div>
     <q-card class="progress__listCard" flat bordered>
       <q-list separator>
-        <q-item clickable @click="$router.push('/posture')">
+        <q-item clickable @click="$router.push('/latihan/postur')">
           <q-item-section avatar>
             <div class="progress__avatar progress__avatar--green">
               <q-icon name="fitness_center" size="20px" />
@@ -85,7 +87,7 @@
           <q-item-section>
             <q-item-label class="progress__itemTitle">Latihan Postur</q-item-label>
             <q-item-label caption class="progress__itemCaption">
-              {{ postureCompleted ? 'Skor: 90/100' : 'Skor: -' }}
+              {{ postureCompleted ? 'Selesai dikerjakan' : 'Belum dikerjakan' }}
             </q-item-label>
           </q-item-section>
 
@@ -99,7 +101,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable @click="$router.push('/stretch')">
+        <q-item clickable @click="$router.push('/latihan/peregangan')">
           <q-item-section avatar>
             <div class="progress__avatar progress__avatar--red">
               <q-icon name="timer" size="20px" />
@@ -128,28 +130,20 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useProgressStore } from 'stores/progress';
-
-type MateriItem = {
-  id: string;
-  title: string;
-};
+import { materiList as materiListData, type Materi } from 'src/data/materi';
 
 const progressStore = useProgressStore();
 
-const materiList: MateriItem[] = [
-  { id: '1', title: 'Pengantar Ergonomi' },
-  { id: '2', title: 'Postur Tubuh yang Benar' },
-  { id: '3', title: 'Peregangan dan Relaksasi' },
-];
+const materiList: Materi[] = materiListData;
 
 const isMateriCompleted = (id: string) => progressStore.materiCompleted.includes(id);
 
 const postureCompleted = computed(() => progressStore.postureCompleted);
 const stretchCompleted = computed(() => progressStore.stretchCompleted);
 
-const completedMateriCount = computed(
-  () => materiList.filter((m) => isMateriCompleted(m.id)).length,
-);
+const completedMateriList = computed(() => materiList.filter((m) => isMateriCompleted(m.id)));
+
+const completedMateriCount = computed(() => completedMateriList.value.length);
 
 const progressPercent = computed(() => {
   if (!materiList.length) return 0;
