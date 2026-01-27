@@ -7,15 +7,6 @@
           Selamat datang di aplikasi pembelajaran ergonomi. Pilih fitur yang ingin Anda akses.
         </div>
       </div>
-
-      <q-btn
-        round
-        flat
-        class="dashboard__themeBtn"
-        :icon="$q.dark.isActive ? 'dark_mode' : 'light_mode'"
-        @click="$q.dark.toggle()"
-        aria-label="Toggle theme"
-      />
     </div>
 
     <div class="q-mt-md">
@@ -122,19 +113,12 @@
   </q-page>
 </template>
 
-<script setup lang="ts">
-import { useQuasar } from 'quasar';
-
-const $q = useQuasar();
-</script>
-
 <style scoped>
 .dashboard {
   background: linear-gradient(180deg, rgba(104, 80, 210, 0.06) 0%, rgba(255, 255, 255, 0) 45%);
 }
 
 .dashboard__title {
-  color: #6b55d6;
   font-weight: 800;
   letter-spacing: -0.3px;
 }
