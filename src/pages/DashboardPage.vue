@@ -115,7 +115,11 @@
 
 <style scoped>
 .dashboard {
-  background: linear-gradient(180deg, rgba(104, 80, 210, 0.06) 0%, rgba(255, 255, 255, 0) 45%);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(59, 130, 246, 0.15), transparent 48%),
+    radial-gradient(circle at 88% 25%, rgba(168, 85, 247, 0.12), transparent 45%),
+    radial-gradient(circle at 50% 95%, rgba(14, 165, 233, 0.08), transparent 35%),
+    linear-gradient(165deg, #f8faff 0%, #eff6ff 35%, #dbeafe 100%);
 }
 
 .dashboard__title {
@@ -135,12 +139,14 @@
 
 .dashboard__navCard {
   border-radius: 28px;
-  border-color: rgba(0, 0, 0, 0.07);
-  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(59, 130, 246, 0.12);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.88) 100%);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 4px 14px rgba(59, 130, 246, 0.08),
+    0 1px 3px rgba(14, 165, 233, 0.1);
 
   &::before {
     content: '';
@@ -149,15 +155,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(25, 118, 210, 0.04) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(168, 85, 247, 0.08) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   &:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 32px rgba(25, 118, 210, 0.18);
-    border-color: rgba(25, 118, 210, 0.15);
+    box-shadow:
+      0 16px 38px rgba(59, 130, 246, 0.22),
+      0 4px 12px rgba(168, 85, 247, 0.15),
+      0 0 0 1px rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
 
     &::before {
       opacity: 1;
@@ -192,39 +201,44 @@
 }
 
 .dashboard__iconWrap--purple {
-  background: rgba(152, 108, 255, 0.18);
-  color: #7b46ff;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.22) 0%, rgba(139, 92, 246, 0.16) 100%);
+  color: #7c3aed;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.18);
 }
 
 .dashboard__iconWrap--blue {
-  background: rgba(76, 148, 255, 0.18);
-  color: #2563eb;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.24) 0%, rgba(37, 99, 235, 0.18) 100%);
+  color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .dashboard__iconWrap--green {
-  background: rgba(45, 212, 191, 0.18);
-  color: #059669;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.24) 0%, rgba(5, 150, 105, 0.18) 100%);
+  color: #047857;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .dashboard__iconWrap--orange {
-  background: rgba(255, 166, 77, 0.18);
-  color: #f97316;
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.24) 0%, rgba(249, 115, 22, 0.18) 100%);
+  color: #ea580c;
+  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.22);
 }
 
 .dashboard__tipsCard {
   border-radius: 24px;
-  border-color: rgba(107, 85, 214, 0.18);
-  background: rgba(107, 85, 214, 0.06);
+  border: 1.5px solid rgba(99, 102, 241, 0.22);
+  background: linear-gradient(135deg, rgba(165, 180, 252, 0.28) 0%, rgba(199, 210, 254, 0.18) 100%);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
 }
 
 .dashboard__tipsTitle {
-  color: #6b55d6;
+  color: #6366f1;
   letter-spacing: 0.08em;
   font-weight: 800;
 }
 
 .dashboard__tipsIcon {
-  color: #6b55d6;
+  color: #6366f1;
 }
 
 .dashboard__tipsText {

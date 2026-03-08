@@ -2,13 +2,17 @@
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
       <q-page class="q-pa-lg column items-center justify-center">
-        <div class="column">
+        <div class="column items-center">
           <!-- Header circle / logo area -->
           <div
-            class="bg-primary flex flex-center q-mb-xl"
+            class="flex flex-center q-mb-xl"
             style="width: 220px; height: 220px; border-radius: 9999px"
           >
-            <q-avatar size="56px" color="white" text-color="primary" icon="person_add" />
+            <img
+              src="~assets/svg logo.svg"
+              alt="Logo Ergonomi"
+              style="max-width: 70%; max-height: 70%; object-fit: contain"
+            />
           </div>
 
           <div style="width: 100%; max-width: 360px">

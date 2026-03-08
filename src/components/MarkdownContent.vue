@@ -77,4 +77,13 @@ const html = computed(() => {
 .md-content :deep(a:hover) {
   text-decoration: underline;
 }
+
+.md-content :deep(img) {
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  margin: 10px auto 16px;
+  border-radius: 12px;
+}
 </style>

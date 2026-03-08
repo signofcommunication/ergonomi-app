@@ -220,63 +220,58 @@ Ergonomi yang tidak baik di kampus dapat menyebabkan gangguan fisik, mental, dan
     title: 'Pencegahan Keluhan Ergonomi di Kampus',
     subtitle: 'Strategi pencegahan untuk mengurangi risiko keluhan muskuloskeletal',
     cover: {
-      src: '/icons/favicon-128x128.png',
+      src: '/posisi-tubuh/Langkah%201%20%E2%80%93%20Posisi%20Awal%20Duduk%20%282%29.png',
       overlay: 'dark',
     },
     contentMd: `# Pencegahan Keluhan Ergonomi di Kampus
 
-## 1. Pencegahan pada Desain Fasilitas Kampus
+Materi berikut membantu mencegah keluhan ergonomi saat belajar atau bekerja di lingkungan kampus.
 
-### Perbaikan sarana belajar
-- Gunakan kursi dan meja sesuai antropometri pengguna
-- Kursi memiliki sandaran punggung dan dukungan lumbar
-- Tinggi meja ± setinggi siku saat duduk
-- Sediakan footrest bila kursi terlalu tinggi
+## Langkah 1. Posisi Awal Duduk
 
-### Ruang kelas & laboratorium
-- Meja praktikum disesuaikan dengan jenis aktivitas (duduk/berdiri)
-- Sediakan alas berdiri anti-lelah (anti-fatigue mat) di laboratorium
+**Instruksi:**
+Duduk dengan posisi stabil di kursi dan pastikan tubuh berada pada posisi seimbang.
 
-## 2. Pencegahan Melalui Postur dan Cara Kerja
+![Posisi Awal Duduk](/posisi-tubuh/Langkah%201%20%E2%80%93%20Posisi%20Awal%20Duduk%20%282%29.png)
 
-### Edukasi postur duduk ergonomis
-- Punggung tegak, bahu rileks
-- Kaki menapak lantai
-- Layar sejajar dengan tinggi mata
-- Jarak mata–layar ± 50–70 cm
+## Langkah 2. Penyesuaian Punggung
 
-### Variasi posisi kerja
-- Hindari duduk statis > 30–60 menit
-- Kombinasikan duduk–berdiri–bergerak
+**Instruksi:**
+Dari posisi membungkuk atau tidak tegak, luruskan punggung secara perlahan lalu sandarkan seluruh bagian punggung pada sandaran kursi. Pastikan tulang belakang berada pada posisi netral (tidak terlalu melengkung ke depan atau ke belakang) dan bahu tetap rileks. Jika diperlukan, gunakan penyangga pinggang (lumbar support) untuk membantu mempertahankan kurva alami tulang belakang.
 
-## 3. Manajemen Waktu dan Istirahat
+![Penyesuaian Punggung](/posisi-tubuh/Langkah%202%20%E2%80%93%20Penyesuaian%20Punggung%20%282%29.png)
 
-### Microbreak ergonomis
-- Istirahat 3–5 menit setiap 30–60 menit
-- Lakukan peregangan leher, bahu, punggung, pergelangan tangan
+## Langkah 3. Relaksasi Bahu
 
-### Aturan 20–20–20 untuk mata
-- Setiap 20 menit, lihat objek sejauh 20 kaki selama 20 detik
+**Instruksi:**
+Angkat bahu perlahan, tahan 3 detik, lalu lepaskan. Ulangi dua kali.
 
-## 4. Pencegahan Keluhan Akibat Gadget & Laptop
+![Relaksasi Bahu](/posisi-tubuh/Langkah%203%20-%20Relaksasi%20Bahu.png)
 
-### Penggunaan laptop
-- Gunakan laptop stand atau buku sebagai penyangga
-- Gunakan keyboard & mouse eksternal bila memungkinkan
+## Langkah 4. Posisi Kepala dan Leher
 
-### Smartphone
-- Angkat layar ke arah mata, bukan menundukkan leher
-- Batasi penggunaan berkelanjutan
+**Instruksi:**
+Posisikan kepala sejajar dengan layar dan tarik dagu sedikit ke belakang.
 
-## 5. Pengendalian Beban Fisik
+![Posisi Kepala dan Leher](/posisi-tubuh/Langkah%204%20%E2%80%93%20Posisi%20Kepala%20dan%20Leher%20%282%29.png)
 
-### Tas dan perlengkapan kuliah
-- Beban tas ≤ 10–15% berat badan
-- Gunakan ransel dua tali dan atur posisi tali simetris
+## Langkah 5. Penyesuaian Lengan dan Tangan
 
-### Aktivitas praktikum
-- Rotasi tugas berdiri dan duduk
-- Gunakan alas kaki yang mendukung
+**Instruksi:**
+Pastikan lengan dan tangan berada pada posisi netral dan rileks.
+
+![Penyesuaian Lengan dan Tangan](/posisi-tubuh/Langkah%205%20%E2%80%93%20Penyesuaian%20Lengan%20dan%20Tangan%20%282%29.png)
+
+## Langkah 6. Pengaturan Pernapasan
+
+**Instruksi:**
+Tarik napas perlahan selama 3 detik, kemudian hembuskan 3 detik. Lakukan dua kali.
+
+![Pengaturan Pernapasan](/posisi-tubuh/Langkah%206%20%E2%80%93%20Pengaturan%20Pernapasan%20%282%29.png)
+
+## Catatan
+
+Lakukan keenam langkah ini secara berkala, terutama setelah duduk lama, agar postur tetap baik dan keluhan ergonomi dapat dicegah.
 `,
   },
 ];
